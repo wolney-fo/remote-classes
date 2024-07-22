@@ -6,11 +6,20 @@ Now I am working again on its development implementing new knowledge with modern
 
 ## Screenshots
 
-![version3](./doc/ui-3.png)
+![version3](./doc/screenshot.png)
 
-_Designed to be user friendly and clean. All you have to do is click (touch) the button._
+_Designed to be a modern and clean interface, and mainly user friendly . All you have to do is click (touch) the button._
 
 ## Stack
+
+### Front-end
+
+- React.js;
+- Next.js;
+- TailwindCSS;
+- Phosphor Icons;
+- Google Fonts;
+- Dayjs;
 
 ### Back-end
 
