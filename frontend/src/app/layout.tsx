@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={defaultFontFamily.className}>{children}</body>
+      <body className={`bg-main-gradient ${defaultFontFamily.className}`}>
+        {children}
+      </body>
     </html>
   );
 }
