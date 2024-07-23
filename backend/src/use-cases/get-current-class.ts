@@ -6,6 +6,10 @@ interface GetCurrentClassResponse {
   title: string;
   url: string;
   thumbnail_url: string;
+  starts_at_hour: number;
+  starts_at_minute: number;
+  ends_at_hour: number;
+  ends_at_minute: number;
 }
 
 export class GetCurrentClassUseCase {
@@ -70,11 +74,17 @@ export class GetCurrentClassUseCase {
     }
 
     const { title, url, thumbnail_url } = currentClass.subject;
+    const { starts_at_hour, starts_at_minute, ends_at_hour, ends_at_minute } =
+      currentClass;
 
     return {
       title,
       url,
       thumbnail_url,
+      starts_at_hour,
+      starts_at_minute,
+      ends_at_hour,
+      ends_at_minute,
     };
   }
 }
