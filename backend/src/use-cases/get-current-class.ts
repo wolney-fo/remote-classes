@@ -25,36 +25,48 @@ export class GetCurrentClassUseCase {
     const currentClass = await prisma.class.findFirst({
       where: {
         weekday: currentDay,
-        starts_at_hour: {
-          lte: currentHour,
-        },
-        ends_at_hour: {
-          gte: currentHour,
-        },
         OR: [
           {
-            starts_at_hour: {
-              lt: currentHour,
-            },
-            ends_at_hour: {
-              gt: currentHour,
-            },
+            AND: [
+              { starts_at_hour: currentHour },
+              { starts_at_minute: { lte: currentMinute } },
+              { ends_at_hour: currentHour },
+              { ends_at_minute: { gte: currentMinute } },
+            ],
           },
           {
-            starts_at_hour: {
-              equals: currentHour,
-            },
-            starts_at_minute: {
-              lte: currentMinute,
-            },
-          },
-          {
-            ends_at_hour: {
-              equals: currentHour,
-            },
-            ends_at_minute: {
-              gte: currentMinute,
-            },
+            AND: [
+              { starts_at_hour: { lte: currentHour } },
+              { ends_at_hour: { gte: currentHour } },
+              {
+                OR: [
+                  {
+                    AND: [
+                      { starts_at_hour: currentHour },
+                      { starts_at_minute: { lte: currentMinute } },
+                    ],
+                  },
+                  {
+                    AND: [
+                      { ends_at_hour: currentHour },
+                      { ends_at_minute: { gte: currentMinute } },
+                    ],
+                  },
+                  {
+                    AND: [
+                      { starts_at_hour: { lte: currentHour } },
+                      { ends_at_hour: { gte: currentHour } },
+                      {
+                        OR: [
+                          { ends_at_hour: { gt: currentHour } },
+                          { ends_at_minute: { gte: currentMinute } },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
