@@ -1,11 +1,11 @@
-version: '2'
+version: '3'
 
 services:
-  remote-classes-mysql:
-    image: 'bitnami/mysql:latest'
+  remote-classes-postgresql:
+    image: bitnami/postgresql
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      - MYSQL_ROOT_USER=docker
-      - MYSQL_ROOT_PASSWORD=docker
-      - MYSQL_DATABASE=remoteclasses
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=remoteclasses
